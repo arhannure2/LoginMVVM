@@ -1,0 +1,19 @@
+***********************************
+23/Sept/2020
+
+- Added dependencies and project is ready
+- Created retrofit interface, retrofit client,
+- created the Base repository ( which will extend by all other repository ) and Auth Repository that will communicate with either our Remote Data Source or Local Storage
+- created the BaseFragment that will be used for creating every other Fragment in our project.
+- created ViewModel and ViewModelFactory.
+
+
+
+
+
+
+***********************************
+***********************************
+***********************************
+***********************************
+***********************************
