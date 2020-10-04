@@ -12,6 +12,7 @@ import com.webtech.loginapp.data.network.UserApi
 import com.webtech.loginapp.data.responses.User
 import com.webtech.loginapp.data.responses.UserRepository
 import com.webtech.loginapp.databinding.FragmentHomeBinding
+
 import com.webtech.loginapp.ui.base.BaseFragment
 import com.webtech.loginapp.ui.hide
 import com.webtech.loginapp.ui.show
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 
-class HomeFragment : BaseFragment<HomeViewModel,FragmentHomeBinding,UserRepository>() {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding,UserRepository>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.webtech.loginapp.data.network.AuthApi
 import com.webtech.loginapp.data.network.Resource
 import com.webtech.loginapp.data.repository.AuthRepository
 import com.webtech.loginapp.databinding.FragmentLoginBinding
+import com.webtech.loginapp.ui.*
 import com.webtech.loginapp.ui.base.BaseFragment
-import com.webtech.loginapp.ui.enable
 import com.webtech.loginapp.ui.home.HomeActivity
-import com.webtech.loginapp.ui.startNewActivity
-import com.webtech.loginapp.ui.visible
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthRepository>() {
@@ -22,21 +23,22 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        binding.progressbar.visible(false)
+      progressbar.hide()
         binding.buttonLogin.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            binding.progressbar.visible(false)
+
+            binding.progressbar.visible(it is Resource.Loading)
+
             when (it) {
                 is Resource.Success -> {
-                    //
-                    viewModel.saveAuthToken(it.value.user.access_token!!)
+                    lifecycleScope.launch {
+                        viewModel.saveAuthToken(it.value.user.access_token!!)
                         requireActivity().startNewActivity(HomeActivity::class.java)
+                    }
 
                 }
-                is Resource.Failure -> {
-                    Toast.makeText(requireContext(), "Login Failure", Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiError(it)
             }
         })
 
@@ -49,7 +51,8 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextTextEmailAddress.text.toString().trim()
             val password = binding.editTextTextPassword.text.toString().trim()
-            binding.progressbar.visible(true)
+            /// no need to show progressbar here its taken care inside Observer loading state
+            //progressbar.show()
             //@todo add input validations
             viewModel.login(email, password)
         }

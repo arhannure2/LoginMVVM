@@ -39,7 +39,9 @@
         android:layout_marginLeft="32dp"
         android:text="@string/email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        android:textColor="@color/colorPrimary"
+        />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -55,7 +57,9 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:textColor="@color/colorPrimary"
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -67,7 +71,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        android:textColor="@color/colorPrimary"
+        />
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -81,7 +87,9 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:textColor="@color/colorPrimary"
+        />
 
     <Button
         android:id="@+id/buttonLogin"
