@@ -43,7 +43,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding,UserReposit
         })
 
         binding.buttonLogout.setOnClickListener {
-            //logout()
+            logout()
         }
     }
 

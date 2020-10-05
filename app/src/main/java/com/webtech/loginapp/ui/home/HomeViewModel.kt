@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.webtech.loginapp.data.network.Resource
 import com.webtech.loginapp.data.responses.LoginResponse
 import com.webtech.loginapp.data.responses.UserRepository
+import com.webtech.loginapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val repository: UserRepository
-) : ViewModel() {
+) : BaseViewModel(repository) {
 
     private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val user: LiveData<Resource<LoginResponse>>

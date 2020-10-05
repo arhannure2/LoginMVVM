@@ -38,7 +38,7 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
                     }
 
                 }
-                is Resource.Failure -> handleApiError(it)
+                is Resource.Failure -> handleApiError(it)  { login() }
             }
         })
 
@@ -49,14 +49,22 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
 
 
         binding.buttonLogin.setOnClickListener {
-            val email = binding.editTextTextEmailAddress.text.toString().trim()
-            val password = binding.editTextTextPassword.text.toString().trim()
-            /// no need to show progressbar here its taken care inside Observer loading state
-            //progressbar.show()
-            //@todo add input validations
-            viewModel.login(email, password)
+
+            login()
+
+
         }
 
+    }
+
+    private fun login()
+    {
+        val email = binding.editTextTextEmailAddress.text.toString().trim()
+        val password = binding.editTextTextPassword.text.toString().trim()
+        /// no need to show progressbar here its taken care inside Observer loading state
+        //progressbar.show()
+        //@todo add input validations
+        viewModel.login(email, password)
     }
 
 
